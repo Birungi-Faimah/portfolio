@@ -711,16 +711,30 @@ form {
   border: 1px solid rgba(52, 152, 219, 0.1);
 }
 
+.form-group {
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
 input,
 textarea {
   border: 2px solid rgba(52, 152, 219, 0.2);
   padding: 1rem;
   border-radius: 10px;
   outline: none;
-  margin-bottom: 1rem;
+  width: 100%;
   transition: all 0.3s ease;
   font-size: 1rem;
   background: rgba(255,255,255,0.8);
+  box-sizing: border-box;
+}
+
+.field-error {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  display: none;
+  font-weight: 500;
 }
 
 input:focus,

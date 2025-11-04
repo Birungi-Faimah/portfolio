@@ -15,19 +15,30 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
   const message = document.getElementById('message');
   const formMessage = document.getElementById('form-message');
 
+  const nameError = document.getElementById('name-error');
+  const emailError = document.getElementById('email-error');
+  const messageError = document.getElementById('message-error');
+
   let valid = true;
-  let errors = [];
 
   // Clear previous errors
   [name, email, message].forEach(field => {
     field.classList.remove('error');
   });
+
+  [nameError, emailError, messageError].forEach(error => {
+    error.style.display = 'none';
+    error.textContent = '';
+  });
+
   formMessage.className = 'form-message';
+  formMessage.style.display = 'none';
 
   // Validate name
   if (!name.value.trim()) {
     name.classList.add('error');
-    errors.push('Name is required');
+    nameError.textContent = 'Name is required';
+    nameError.style.display = 'block';
     valid = false;
   }
 
@@ -35,38 +46,43 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!email.value.trim()) {
     email.classList.add('error');
-    errors.push('Email is required');
+    emailError.textContent = 'Email is required';
+    emailError.style.display = 'block';
     valid = false;
   } else if (!emailRegex.test(email.value.trim())) {
     email.classList.add('error');
-    errors.push('Please enter a valid email address');
+    emailError.textContent = 'Please enter a valid email address';
+    emailError.style.display = 'block';
     valid = false;
   }
 
   // Validate message
   if (!message.value.trim()) {
     message.classList.add('error');
-    errors.push('Message is required');
+    messageError.textContent = 'Message is required';
+    messageError.style.display = 'block';
     valid = false;
   }
 
   if (!valid) {
-    // Show error message
-    formMessage.textContent = errors.join('. ');
+    // Show general error message
+    formMessage.textContent = 'Please correct the errors above and try again.';
     formMessage.classList.add('error');
+    formMessage.style.display = 'block';
   } else {
-    // Show success message and submit form
-    formMessage.textContent = 'Thank you! Your message has been sent successfully.';
+    // Show success message
+    formMessage.textContent = 'Thank you! Your message has been sent successfully. I will get back to you soon!';
     formMessage.classList.add('success');
+    formMessage.style.display = 'block';
 
     // Clear form
     name.value = "";
     email.value = "";
     message.value = "";
 
-    // Submit the form after a short delay to show success message
+    // Submit the form after showing success message
     setTimeout(() => {
       e.target.submit();
-    }, 2000);
+    }, 3000);
   }
 });
