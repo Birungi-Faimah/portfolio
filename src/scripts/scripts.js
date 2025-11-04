@@ -1,3 +1,11 @@
+// Hamburger menu toggle
+const menuToggle = document.getElementById('menu-toggle');
+const navbar = document.querySelector('.navbar');
+
+menuToggle.addEventListener('click', () => {
+  navbar.classList.toggle('active');
+});
+
 // Form validation on submit
 document.getElementById('contactForm').addEventListener('submit', function (e) {
   const name = document.getElementById('name');
