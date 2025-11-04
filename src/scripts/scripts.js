@@ -4,13 +4,21 @@ const navbar = document.querySelector('.navbar');
 
 menuToggle.addEventListener('click', () => {
   navbar.classList.toggle('active');
-  // Close menu when clicking on a link
-  const navLinks = navbar.querySelectorAll('a');
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      navbar.classList.remove('active');
-    });
+});
+
+// Close menu when clicking on a link
+const navLinks = navbar.querySelectorAll('a');
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    navbar.classList.remove('active');
   });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!menuToggle.contains(e.target) && !navbar.contains(e.target)) {
+    navbar.classList.remove('active');
+  }
 });
 
 // Form validation and async submission (works with Formspree)
