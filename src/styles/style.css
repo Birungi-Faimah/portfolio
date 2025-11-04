@@ -393,6 +393,13 @@ h2 {
   box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
 }
 
+.btn:disabled {
+  background: #95a5a6 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
 .services-grid {
   display: flex;
   flex-wrap: wrap;

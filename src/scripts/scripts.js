@@ -10,6 +10,7 @@ menuToggle.addEventListener('click', () => {
 document.getElementById('contactForm').addEventListener('submit', function (e) {
   e.preventDefault(); // Prevent default form submission
 
+  const submitBtn = document.getElementById('submit-btn');
   const name = document.getElementById('name');
   const email = document.getElementById('email');
   const message = document.getElementById('message');
@@ -20,6 +21,10 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
   const messageError = document.getElementById('message-error');
 
   let valid = true;
+
+  // Disable submit button to prevent multiple submissions
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending...';
 
   // Clear previous errors
   [name, email, message].forEach(field => {
@@ -65,6 +70,10 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
   }
 
   if (!valid) {
+    // Re-enable submit button
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send Message';
+
     // Show general error message
     formMessage.textContent = 'Please correct the errors above and try again.';
     formMessage.classList.add('error');
