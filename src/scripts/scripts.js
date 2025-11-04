@@ -6,8 +6,8 @@ menuToggle.addEventListener('click', () => {
   navbar.classList.toggle('active');
 });
 
-// Form validation and submission
-document.getElementById('contactForm').addEventListener('submit', function (e) {
+// Form validation and async submission (works with Formspree)
+document.getElementById('contactForm').addEventListener('submit', async function (e) {
   e.preventDefault(); // Prevent default form submission
 
   const submitBtn = document.getElementById('submit-btn');
@@ -22,24 +22,20 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
 
   let valid = true;
 
-  // Disable submit button to prevent multiple submissions
+  // Disable submit button
   submitBtn.disabled = true;
   submitBtn.textContent = 'Sending...';
 
   // Clear previous errors
-  [name, email, message].forEach(field => {
-    field.classList.remove('error');
-  });
-
+  [name, email, message].forEach(field => field.classList.remove('error'));
   [nameError, emailError, messageError].forEach(error => {
     error.style.display = 'none';
     error.textContent = '';
   });
-
-  formMessage.className = 'form-message';
   formMessage.style.display = 'none';
+  formMessage.className = 'form-message';
 
-  // Validate name
+  // Validate fields
   if (!name.value.trim()) {
     name.classList.add('error');
     nameError.textContent = 'Name is required';
@@ -47,7 +43,6 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
     valid = false;
   }
 
-  // Validate email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!email.value.trim()) {
     email.classList.add('error');
@@ -56,12 +51,11 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
     valid = false;
   } else if (!emailRegex.test(email.value.trim())) {
     email.classList.add('error');
-    emailError.textContent = 'Please enter a valid email address';
+    emailError.textContent = 'Please enter a valid email';
     emailError.style.display = 'block';
     valid = false;
   }
 
-  // Validate message
   if (!message.value.trim()) {
     message.classList.add('error');
     messageError.textContent = 'Message is required';
@@ -70,28 +64,40 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
   }
 
   if (!valid) {
-    // Re-enable submit button
     submitBtn.disabled = false;
     submitBtn.textContent = 'Send Message';
-
-    // Show general error message
-    formMessage.textContent = 'Please correct the errors above and try again.';
+    formMessage.textContent = 'Please fix the errors above and try again.';
     formMessage.classList.add('error');
     formMessage.style.display = 'block';
-  } else {
-    // Show success message
-    formMessage.textContent = 'Thank you! Your message has been sent successfully. I will get back to you soon!';
-    formMessage.classList.add('success');
-    formMessage.style.display = 'block';
-
-    // Clear form
-    name.value = "";
-    email.value = "";
-    message.value = "";
-
-    // Submit the form after showing success message
-    setTimeout(() => {
-      e.target.submit();
-    }, 3000);
+    return;
   }
+
+  // ✅ Send to Formspree using Fetch
+  try {
+    const formData = new FormData(e.target);
+    const response = await fetch(e.target.action, {
+      method: 'POST',
+      body: formData,
+      headers: { Accept: 'application/json' },
+    });
+
+    if (response.ok) {
+      formMessage.textContent = 'Thank you! Your message has been sent successfully. I’ll get back to you soon!';
+      formMessage.classList.add('success');
+      formMessage.style.display = 'block';
+      e.target.reset(); // Clear form
+    } else {
+      formMessage.textContent = 'Oops! Something went wrong. Please try again later.';
+      formMessage.classList.add('error');
+      formMessage.style.display = 'block';
+    }
+  } catch (error) {
+    formMessage.textContent = 'Network error. Please check your connection and try again.';
+    formMessage.classList.add('error');
+    formMessage.style.display = 'block';
+  }
+
+  // Re-enable button
+  submitBtn.disabled = false;
+  submitBtn.textContent = 'Send Message';
 });

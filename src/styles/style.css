@@ -399,6 +399,37 @@ h2 {
   transform: none !important;
   box-shadow: none !important;
 }
+.form-message {
+  margin-top: 1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  font-weight: 500;
+  display: none;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.form-message.success {
+  display: block;
+  background-color: #e6f9e6;
+  color: #2e7d32;
+  border: 1px solid #81c784;
+}
+
+.form-message.error {
+  display: block;
+  background-color: #fdecea;
+  color: #c62828;
+  border: 1px solid #f44336;
+}
+
+.field-error {
+  color: #c62828;
+  font-size: 0.9rem;
+  margin-top: 4px;
+  display: none;
+}
+
 
 .services-grid {
   display: flex;
