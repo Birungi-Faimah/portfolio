@@ -4,6 +4,13 @@ const navbar = document.querySelector('.navbar');
 
 menuToggle.addEventListener('click', () => {
   navbar.classList.toggle('active');
+  // Close menu when clicking on a link
+  const navLinks = navbar.querySelectorAll('a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      navbar.classList.remove('active');
+    });
+  });
 });
 
 // Form validation and async submission (works with Formspree)

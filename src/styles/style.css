@@ -889,6 +889,15 @@ textarea.error {
     max-height: 300px;
   }
 
+  .navbar a {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(52, 152, 219, 0.1);
+  }
+
+  .navbar a:last-child {
+    border-bottom: none;
+  }
+
   .gradient-btn {
     order: 3;
     margin-top: 1rem;
