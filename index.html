@@ -3,38 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Birungi Faimah | Portfolio</title>
+  <meta name="description" content="Birungi Faimah - Full-Stack Developer specializing in React, Node.js, TypeScript, MongoDB. Building scalable web applications and exceptional user experiences." />
+  <meta name="keywords" content="Full-Stack Developer, React, Node.js, TypeScript, MongoDB, Web Developer, Uganda" />
+  <meta name="author" content="Birungi Faimah" />
+  <meta property="og:title" content="Birungi Faimah | Portfolio" />
+  <meta property="og:description" content="Full-Stack Developer specializing in building modern, responsive web applications." />
+  <meta property="og:image" content="images/og-image.jpg" />
+  <meta property="og:url" content="https://your-portfolio-url.com" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Birungi Faimah | Portfolio" />
+  <meta name="twitter:description" content="Full-Stack Developer specializing in building modern, responsive web applications." />
+  <title>Birungi Faimah | Full-Stack Developer</title>
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
   <link rel="stylesheet" href="./src/styles/style.css" />
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
 </head>
 <body>
 
+  <!-- Skip Navigation Link for Accessibility -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
   <header class="header">
     <a href="#home" class="logo">BIRUNGI <span>FAIMAH</span></a>
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
-    <div class="menu-toggle" id="menu-toggle">
+    <div class="menu-toggle" id="menu-toggle" role="button" aria-label="Toggle navigation menu" tabindex="0">
       <i class='bx bx-menu'></i>
     </div>
+    <button class="theme-toggle" aria-label="Toggle dark mode">
+      <i class='bx bx-moon'></i>
+    </button>
     <a href="#contact" class="gradient-btn">Hire Me</a>
   </header>
 
+  <main id="main-content">
   <section class="home" id="home">
     <div class="home-layout">
       <div class="home-content">
         <h1>Hi, I'm <span>Faimah</span> 💫</h1>
         <h3>Software Developer | Agile Enthusiast</h3>
         <p>I design and build responsive, modern websites with a focus on clean code and elegant user experiences.</p>
-        <a href="Birungi Faimah CV (1).pdf" class="btn" download>Download CV</a>
+        <a href="Birungi Faimah CV (1).pdf" class="btn" download aria-label="Download CV">Download CV</a>
         <a href="#contact" class="btn">Contact Me</a>
       </div>
       <div class="home-img-card">
-        <img src="images/Smile bby.jpg" alt="Birungi Faimah" />
+        <img src="images/Smile bby.jpg" alt="Birungi Faimah - Full-Stack Developer" loading="lazy" />
       </div>
     </div>
   </section>
@@ -73,9 +92,7 @@
         </div>
       </div>
       <div class="about-image">
-        <div class="image-placeholder">
-          <i class='bx bx-code-alt'></i>
-        </div>
+        <img src="images/Smile bby.jpg" alt="Birungi Faimah - Professional Photo" class="about-photo" loading="lazy" />
       </div>
     </div>
   </section>
@@ -130,7 +147,7 @@
     <div class="projects-grid">
 
       <div class="project-card">
-        <img src="images/project1.png" alt="Karibu Groceries Limited Screenshot" />
+        <img src="images/project1.png" alt="Karibu Groceries Limited Dashboard" loading="lazy" />
         <div class="project-info">
           <h3>Karibu Groceries Limited Dashboard</h3>
           <p>Created a responsive inventory system that replaced handwritten record books with a modern dashboard.
@@ -150,7 +167,7 @@
       </div>
       
       <div class="project-card">
-        <img src="images/catalyst.png" alt="Ecommerce Platform Screenshot" />
+        <img src="images/catalyst.png" alt="Ecommerce Platform Dashboard" loading="lazy" />
         <div class="project-info">
           <h3>Ecommerce Platform</h3>
           <p>I built a responsive system that helps sellers manage products with ease.
@@ -171,7 +188,7 @@
       </div>
 
       <div class="project-card">
-        <img src="public/images/swan.png" alt="SwanAir Travels & Safari Costing Software Screenshot" />
+        <img src="public/images/swan.png" alt="SwanAir Travels & Safari Costing Software Dashboard" loading="lazy" />
         <div class="project-info">
           <h3>SwanAir Travels & Safari Costing Software</h3>
           <p>I developed a comprehensive travel and safari costing solution using modern web technologies.
@@ -200,22 +217,25 @@
     <h2>Contact Me</h2>
     <div class="contact-container">
       <div class="contact-form-section">
-        <form id="contactForm" action="https://formspree.io/f/xqayglnr" method="POST">
+        <form id="contactForm" action="https://formspree.io/f/xqayglnr" method="POST" aria-label="Contact form">
           <div class="form-group">
-            <input id="name" type="text" name="name" placeholder="Your Name" required />
+            <label for="name">Your Name</label>
+            <input id="name" type="text" name="name" placeholder="Your Name" required aria-required="true" />
             <div id="name-error" class="field-error"></div>
           </div>
           <div class="form-group">
-            <input id="email" type="email" name="email" placeholder="Your Email" required />
+            <label for="email">Your Email</label>
+            <input id="email" type="email" name="email" placeholder="Your Email" required aria-required="true" />
             <div id="email-error" class="field-error"></div>
           </div>
           <div class="form-group">
-            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" placeholder="Your Message" required aria-required="true"></textarea>
             <div id="message-error" class="field-error"></div>
           </div>
           <button type="submit" id="submit-btn" class="btn">Send Message</button>
         </form>
-        <div id="form-message" class="form-message"></div>
+        <div id="form-message" class="form-message" role="alert" aria-live="polite"></div>
       </div>
       <div class="contact-info">
         <h3>Get In Touch</h3>
@@ -228,14 +248,14 @@
               birungifaimah887@gmail.com
             </div>
           </a>
-          <a href="https://wa.me/256755826842" class="contact-method" target="_blank">
+          <a href="https://wa.me/256755826842" class="contact-method" target="_blank" rel="noopener noreferrer">
             <i class='bx bxl-whatsapp'></i>
             <div>
               <strong>WhatsApp</strong><br>
               +256 755826842
             </div>
           </a>
-          <a href="https://www.linkedin.com/in/faimah-birungi/" class="contact-method" target="_blank">
+          <a href="https://www.linkedin.com/in/faimah-birungi/" class="contact-method" target="_blank" rel="noopener noreferrer">
             <i class='bx bxl-linkedin'></i>
             <div>
               <strong>LinkedIn</strong><br>
@@ -246,19 +266,20 @@
       </div>
     </div>
   </section>
+  </main>
 
   <footer class="footer">
     <div class="social-icons">
-      <a href="https://github.com/Birungi-Faimah" target="_blank" class="icon" title="GitHub">
+      <a href="https://github.com/Birungi-Faimah" target="_blank" class="icon" title="GitHub" aria-label="GitHub profile">
         <i class="bx bxl-github"></i>
       </a>
-      <a href="https://www.linkedin.com/in/faimah-birungi/" target="_blank" class="icon" title="LinkedIn">
+      <a href="https://www.linkedin.com/in/faimah-birungi/" target="_blank" class="icon" title="LinkedIn" aria-label="LinkedIn profile">
         <i class="bx bxl-linkedin"></i>
       </a>
-      <a href="mailto:birungifaimah887@gmail.com?subject=Portfolio%20Inquiry" class="icon" title="Send me an email">
+      <a href="mailto:birungifaimah887@gmail.com?subject=Portfolio%20Inquiry" class="icon" title="Send me an email" aria-label="Send email">
         <i class="bx bx-envelope"></i>
       </a>
-      <a href="https://wa.me/256755826842" class="icon" target="_blank" title="Chat on WhatsApp">
+      <a href="https://wa.me/256755826842" class="icon" target="_blank" title="Chat on WhatsApp" aria-label="WhatsApp contact">
         <i class="bx bxl-whatsapp"></i>
       </a>
     </div>
@@ -276,4 +297,3 @@
   <script src="./src/scripts/scripts.js"></script>
 </body>
 </html>
-

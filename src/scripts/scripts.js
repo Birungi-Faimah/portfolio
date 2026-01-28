@@ -21,6 +21,38 @@ document.addEventListener('click', (e) => {
   }
 });
 
+// Dark Mode Toggle
+const themeToggle = document.querySelector('.theme-toggle');
+const body = document.body;
+
+// Check for saved theme preference or default to light
+const savedTheme = localStorage.getItem('theme') || 'light';
+document.documentElement.setAttribute('data-theme', savedTheme);
+
+// Update button icon based on current theme
+function updateThemeIcon(theme) {
+  if (themeToggle) {
+    const icon = themeToggle.querySelector('i');
+    if (icon) {
+      icon.className = theme === 'dark' ? 'bx bx-sun' : 'bx bx-moon';
+    }
+  }
+}
+
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+  });
+  
+  // Initialize icon
+  updateThemeIcon(savedTheme);
+}
+
 // Form validation and async submission (works with Formspree)
 document.getElementById('contactForm').addEventListener('submit', async function (e) {
   e.preventDefault(); // Prevent default form submission
@@ -87,7 +119,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
     return;
   }
 
-  // ✅ Send to Formspree using Fetch
+  // Send to Formspree using Fetch
   try {
     const formData = new FormData(e.target);
     const response = await fetch(e.target.action, {
@@ -97,7 +129,7 @@ document.getElementById('contactForm').addEventListener('submit', async function
     });
 
     if (response.ok) {
-      formMessage.textContent = 'Thank you! Your message has been sent successfully. I’ll get back to you soon!';
+      formMessage.textContent = "Thank you! Your message has been sent successfully. I'll get back to you soon!";
       formMessage.classList.add('success');
       formMessage.style.display = 'block';
       e.target.reset(); // Clear form
